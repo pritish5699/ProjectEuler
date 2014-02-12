@@ -1,6 +1,7 @@
 package com.example.projecteuler.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -21,20 +22,21 @@ public class Util {
 		return instance;
 	}
 	
-	private StringBuilder readFile(String path)
+	public String[] readFile(String path)
 	{
-		StringBuilder strBuilder = new StringBuilder();
+		String[] strBuilder =null;
 		BufferedReader br = null;
 		try {
  
 			String sCurrentLine;
- 
+			File file = new File(path);
 			br = new BufferedReader(new FileReader(path));
- 
+			strBuilder = new String[(int) file.length()];
+			int i =0;
 			while ((sCurrentLine = br.readLine()) != null) {
 				//System.out.println(sCurrentLine);
-				strBuilder.append(sCurrentLine);
-				strBuilder.append("\n");
+				strBuilder[i] = sCurrentLine;
+				i++;
 			}
  
 		} catch (IOException e) {
